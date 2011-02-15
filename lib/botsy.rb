@@ -7,6 +7,10 @@ module Botsy
 
   class Bot
 
+    def self.fork(*args, &block)
+      Kernel.fork { self.new(*args, &block) }
+    end
+
     def initialize(subdomain, token, room_id, &block)
       @subdomain = subdomain
       @room_id = room_id
