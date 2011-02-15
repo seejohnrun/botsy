@@ -6,7 +6,7 @@ Botsy is a Campfire chat bot similar to [evilbot](https://github.com/defunkt/evi
 
 ## Usage
 
-    Botsy::Bot.new(subdomain, token, room_it) do
+    Botsy::Bot.new(subdomain, token, room_id) do
       hear(/john/) do
         say 'who said my name?'
       end
