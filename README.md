@@ -27,4 +27,15 @@ Botsy is a Campfire chat bot similar to [evilbot](https://github.com/defunkt/evi
       end
     end
 
+## What is 'data'
+
+    data[:room_id] # the room the message is from
+    data[:created_at] # a string representation of the date the message was sent
+    data[:body] # the body of the message that matched
+    data[:id] # a unique id for this message
+    data[:user_id] # the user id of the person who sent the message
+    data[:type] # the type of message: TextMessage, SoundMessage, PasteMessage, etc
+
+---
+
 That's all there is to it!
