@@ -1,5 +1,5 @@
 require 'bundler/setup'
-require 'net/http'
+require 'net/https'
 require 'json'
 require 'yajl/http_stream'
 
