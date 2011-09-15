@@ -1,6 +1,5 @@
 require 'bundler/setup'
 require 'net/https'
-require 'json'
 require 'yajl/http_stream'
 
 module Botsy
@@ -32,7 +31,7 @@ module Botsy
     def say(thing, type = 'TextMessage')
       request = Net::HTTP::Post.new("/room/#{@room_id}/speak.json", 'Content-Type' => 'application/json')
       request.body = "{\"message\":{\"type\":\"#{type}\",\"body\":\"#{thing}\"}}"
-      request.basic_auth @token, 'x' 
+      request.basic_auth @token, 'x'
       http = Net::HTTP.new("#{@subdomain}.campfirenow.com", 443)
       http.use_ssl = true
       http.request(request)
@@ -77,7 +76,7 @@ module Botsy
       item = nil
       Yajl::HttpStream.get(uri, :symbolize_keys => true) do |item|
         handle_item item
-      end
+      end rescue start_listening_forever
     end
 
     def handle_item(item)
