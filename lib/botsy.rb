@@ -1,6 +1,7 @@
 require 'bundler/setup'
 require 'net/https'
 require 'yajl/http_stream'
+require 'yajl/json_gem'
 
 module Botsy
 
@@ -30,7 +31,7 @@ module Botsy
     # Submit an HTTPS request with the JSON content to the speak path
     def say(thing, type = 'TextMessage')
       request = Net::HTTP::Post.new("/room/#{@room_id}/speak.json", 'Content-Type' => 'application/json')
-      request.body = "{\"message\":{\"type\":\"#{type}\",\"body\":\"#{thing}\"}}"
+      request.body = { message: { type: type, body: thing } }.to_json
       request.basic_auth @token, 'x'
       http = Net::HTTP.new("#{@subdomain}.campfirenow.com", 443)
       http.use_ssl = true
